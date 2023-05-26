@@ -1,0 +1,4 @@
+Name,str mod,dex mod,int mod
+elf,0,2,-2
+human,1,1,1
+dwarf,2,-2,0

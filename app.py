@@ -2,7 +2,7 @@
 from flask import Flask, redirect, url_for, render_template
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField
-from wtforms import DataRequired
+from wtforms.validators import DataRequired
 
 # Create an app, being sure to pass __name__
 app = Flask(__name__)
@@ -21,17 +21,22 @@ def index():
     c = a + b
     return render_template("index.html", number = c)
 
+c = 15
+
 # Creat name page
 @app.route("/name", methods=["GET", "POST"])
 def name():
     name = None
     form = CharacterNameForm()
+    if form.validate_on_submit():
+        name = form.name.data
+        form.name.data = ''
     return render_template("name.html",
         name = name,
-        form = form)
+        form = form,
+        number = c)
 
-
-# @app.route ("/Name")
+# @ app.route ("/Name")
 # def name ():
 #     # enter your name here
 #     return (update to DB), the next sheet

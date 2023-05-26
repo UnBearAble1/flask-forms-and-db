@@ -1,1 +1,23 @@
 <h1>Enter your name</h1>
+
+{% if name %}
+
+    <h1>Review your name and click here to proceed</h1>
+
+{% else %}
+
+    <h1> What's your name/</h1>
+    <br/>
+    {{ number }}
+    <br/>
+    <form method="POST">
+        {{ form.hidden_tag() }}
+        {{ form.name.label }}
+        {{ form.name() }}
+        <br/>
+        {{ form.submit() }}
+    </form>
+    
+
+{% endif %}
+
