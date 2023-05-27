@@ -1,29 +1,30 @@
-from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
+import datetime as dt
+import numpy as np
+import pandas as pd
+import sqlalchemy
+from sqlalchemy.ext.automap import automap_base
+from sqlalchemy.orm import Session
+from sqlalchemy import create_engine, func
+from flask import Flask, jsonify
+
+engine = create_engine("sqlite:///ancestry.sqlite")
+Base = automap_base()
+Base.prepare(engine, reflect=True)
+
+# Station = Base.classes.station
+
+session = Session(engine)
 
 app = Flask(__name__)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///ancestry.sqlite'
+@app.route("/")
+def welcome():
+    return(
+    '''
+    placeholder
+    ''')
 
-db = SQLAlchemy(app)
-
-def create_app():
-    app = Flask(__name__)
-
-    with app.app_context():
-        init_db()
-
-    return app
-
-# reflection - can only read data
-
-ancestry = db.Table("ancestry", db.metadata, autoload=True, autoload_with=db.engine)
-
-@app.route('/')
-def table():
-    results = db.session.query(ancestry).all()
-    for r in results:
-        print(r.Name)
-
-
-    return ''
+# Name, str mod, dex mod
+@app.route("/elf")
+def elf():
+    return ('''hi''')

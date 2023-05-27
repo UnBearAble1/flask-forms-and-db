@@ -1,4 +1,4 @@
-Name,str mod,dex mod,int mod
+name,str_mod,dex_mod,int_mod
 elf,0,2,-2
 human,1,1,1
 dwarf,2,-2,0
