@@ -36,6 +36,9 @@ def name():
         form = form,
         number = c)
 
+# practice calling in a db like its just python, use what you would do from just jupyter notebook and then try to simply create a route where a variable is called
+
+
 # @ app.route ("/Name")
 # def name ():
 #     # enter your name here

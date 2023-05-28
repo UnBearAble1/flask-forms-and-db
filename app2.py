@@ -7,12 +7,15 @@ from sqlalchemy.orm import Session
 from sqlalchemy import create_engine, func
 from flask import Flask, jsonify
 
-engine = create_engine("sqlite:///ancestry.sqlite")
+engine = create_engine("sqlite:///ancestry.db")
 Base = automap_base()
 Base.prepare(engine, reflect=True)
 
-# Station = Base.classes.station
+# Save the reference to the table, for ancestry, the table is ancestry
 
+Ancestry = Base.classes.ancestry
+
+# Create the session
 session = Session(engine)
 
 app = Flask(__name__)
@@ -27,4 +30,8 @@ def welcome():
 # Name, str mod, dex mod
 @app.route("/elf")
 def elf():
-    return ('''hi''')
+    ancestry = session.query(Ancestry.str_mod).all()
+
+    return jsonify(ancestry)
+
+
